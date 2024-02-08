@@ -3,18 +3,6 @@ import { Box, CssBaseline, CssVarsProvider } from '@mui/joy'
 import Sidebar from '../components/SideNav'
 import Header from '../components/Header'
 
-// const TanStackRouterDevtools =
-//   import.meta.env.NODE_ENV === 'production'
-//     ? () => null // Render nothing in production
-//     : React.lazy(() =>
-//         // Lazy load in development
-//         import('@tanstack/router-devtools').then((res) => ({
-//           default: res.TanStackRouterDevtools,
-//           // For Embedded Mode
-//           // default: res.TanStackRouterDevtoolsPanel
-//         })),
-//       )
-
 export const Route = createRootRoute({
   component: () => (
     <CssVarsProvider disableTransitionOnChange>
@@ -40,10 +28,6 @@ export const Route = createRootRoute({
           <Outlet />
         </Box>
       </Box>
-
-      {/* <Suspense>
-        <TanStackRouterDevtools />
-      </Suspense> */}
     </CssVarsProvider>
   ),
 })
