@@ -24,23 +24,20 @@ export function useAnalysis() {
     setRenderCnt(0)
   }
 
-  const onRenderA: ProfilerOnRenderCallback = (_, __, ___, value, s, c) => {
+  const onRenderA: ProfilerOnRenderCallback = (_, __, ___, value) => {
     if (!durationA) {
-      console.log('A:', value, s, c)
-
       setDurationA(value)
     }
   }
 
   const onRenderB: ProfilerOnRenderCallback = (_, __, ___, value) => {
     if (!durationB) {
-      console.log('B:', value)
       setDurationB(value)
     }
   }
 
   useEffect(() => {
-    if (durationA && durationB) {
+    if (durationA != null && durationB != null) {
       setData((prev) => [...prev, [durationA, durationB]])
       setTotal((prev) => [prev[0] + durationA, prev[1] + durationB])
     }
