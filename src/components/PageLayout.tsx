@@ -50,6 +50,7 @@ export default function PageLayout({
           {renderCnt > 0 && (
             <Stack direction={'row'} gap={4}>
               <Box flex={1}>
+                <Typography>{compAName}</Typography>
                 <Profiler
                   key={genKey(compAName)}
                   id={compAName}
@@ -59,6 +60,7 @@ export default function PageLayout({
                 </Profiler>
               </Box>
               <Box flex={1}>
+                <Typography>{compBName}</Typography>
                 <Profiler
                   key={genKey(compBName)}
                   id={compBName}

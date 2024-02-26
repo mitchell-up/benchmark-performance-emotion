@@ -1,17 +1,17 @@
-import GlobalStyles from '@mui/joy/GlobalStyles';
-import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
-import Divider from '@mui/joy/Divider';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
-import ListItemContent from '@mui/joy/ListItemContent';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
+import GlobalStyles from '@mui/joy/GlobalStyles'
+import Avatar from '@mui/joy/Avatar'
+import Box from '@mui/joy/Box'
+import Divider from '@mui/joy/Divider'
+import List from '@mui/joy/List'
+import ListItem from '@mui/joy/ListItem'
+import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton'
+import ListItemContent from '@mui/joy/ListItemContent'
+import Typography from '@mui/joy/Typography'
+import Sheet from '@mui/joy/Sheet'
 
-import ColorSchemeToggle from './ColorSchemeToggle';
-import { closeSidebar } from '../utils';
-import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
+import ColorSchemeToggle from './ColorSchemeToggle'
+import { closeSidebar } from '../utils'
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
 
 // function Toggler({
 //   defaultExpanded = false,
@@ -51,24 +51,31 @@ export default function Sidebar() {
 
   const sideMenus = [
     {
-      content: 'Home',
+      content: 'Styled vs CssProp (Object)',
       isSelected: location.pathname === '/',
       onClick: () => {
         navigate({ to: '/' })
-      }
+      },
     },
     {
-      content: 'About',
-      isSelected: location.pathname === '/about',
+      content: 'Styled vs CssProp (Template Literal)',
+      isSelected: location.pathname === '/styledliteral',
       onClick: () => {
-        navigate({ to: '/about' })
-      }
+        navigate({ to: '/styledliteral' })
+      },
+    },
+    {
+      content: 'Object vs Literal (CssProp)',
+      isSelected: location.pathname === '/literalobj',
+      onClick: () => {
+        navigate({ to: '/literalobj' })
+      },
     },
   ]
 
   return (
     <Sheet
-      className="Sidebar"
+      className='Sidebar'
       sx={{
         position: { xs: 'fixed', md: 'sticky' },
         transform: {
@@ -100,7 +107,7 @@ export default function Sidebar() {
         })}
       />
       <Box
-        className="Sidebar-overlay"
+        className='Sidebar-overlay'
         sx={{
           position: 'fixed',
           zIndex: 9998,
@@ -119,10 +126,10 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <Typography level="title-lg">Benchmark Emotion</Typography>
+        <Typography level='title-lg'>Benchmark Emotion</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
-      
+
       {/* 메뉴들 */}
       <Box
         sx={{
@@ -137,7 +144,7 @@ export default function Sidebar() {
         }}
       >
         <List
-          size="sm"
+          size='sm'
           sx={{
             gap: 1,
             '--List-nestedInsetStart': '30px',
@@ -146,11 +153,11 @@ export default function Sidebar() {
         >
           {sideMenus.map(({ content, isSelected, onClick }) => (
             <ListItem key={content}>
-                <ListItemButton selected={isSelected} onClick={onClick}>
-                  <ListItemContent>
-                    <Typography level="title-sm">{content}</Typography>
-                  </ListItemContent>
-                </ListItemButton>
+              <ListItemButton selected={isSelected} onClick={onClick}>
+                <ListItemContent>
+                  <Typography level='title-sm'>{content}</Typography>
+                </ListItemContent>
+              </ListItemButton>
             </ListItem>
           ))}
           {/* <ListItem nested>
@@ -186,17 +193,17 @@ export default function Sidebar() {
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Avatar
-          variant="outlined"
-          size="sm"
-          src="https://avatars.githubusercontent.com/u/132321873?v=4"
+          variant='outlined'
+          size='sm'
+          src='https://avatars.githubusercontent.com/u/132321873?v=4'
         />
-        <Link to='https://github.com/mitchell-up' target='_blank'>  
+        <Link to='https://github.com/mitchell-up' target='_blank'>
           <Box sx={{ minWidth: 0, flex: 1 }}>
-            <Typography level="title-sm">mitchell</Typography>
-            <Typography level="body-xs">kim3603di@gmail.com</Typography>
+            <Typography level='title-sm'>mitchell</Typography>
+            <Typography level='body-xs'>kim3603di@gmail.com</Typography>
           </Box>
         </Link>
       </Box>
     </Sheet>
-  );
+  )
 }

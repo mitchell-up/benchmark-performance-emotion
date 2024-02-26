@@ -1,14 +1,19 @@
-import { createLazyFileRoute } from '@tanstack/react-router';
-import PageLayout from '../components/PageLayout';
+import { createLazyFileRoute } from '@tanstack/react-router'
+import PageLayout from '../components/PageLayout'
+import { CssObjButton, StyledObjButton } from '../components/subject/Button'
 
 export const Route = createLazyFileRoute('/')({
-  component: Index,
+  component: Styledcss,
 })
 
-function Index() {
+function Styledcss() {
   return (
-    <PageLayout title='Home'>
-      <h3>Welcome Home!</h3>
-    </PageLayout>
+    <PageLayout
+      title='Styled vs CssProp (Object)'
+      compA={<StyledObjButton />}
+      compAName='Styled'
+      compB={<CssObjButton />}
+      compBName='Css'
+    />
   )
 }

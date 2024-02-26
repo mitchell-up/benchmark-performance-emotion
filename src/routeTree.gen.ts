@@ -16,15 +16,21 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
+const StyledliteralLazyImport = createFileRoute('/styledliteral')()
+const LiteralobjLazyImport = createFileRoute('/literalobj')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const StyledliteralLazyRoute = StyledliteralLazyImport.update({
+  path: '/styledliteral',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/styledliteral.lazy').then((d) => d.Route))
+
+const LiteralobjLazyRoute = LiteralobjLazyImport.update({
+  path: '/literalobj',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/literalobj.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -39,8 +45,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutLazyImport
+    '/literalobj': {
+      preLoaderRoute: typeof LiteralobjLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/styledliteral': {
+      preLoaderRoute: typeof StyledliteralLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -48,4 +58,8 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute, AboutLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  LiteralobjLazyRoute,
+  StyledliteralLazyRoute,
+])
