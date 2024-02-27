@@ -71,6 +71,13 @@ export default function Sidebar() {
         navigate({ to: '/literalobj' })
       },
     },
+    {
+      content: 'CssProp vs ClassName',
+      isSelected: location.pathname === '/classname',
+      onClick: () => {
+        navigate({ to: '/classname' })
+      },
+    },
   ]
 
   return (

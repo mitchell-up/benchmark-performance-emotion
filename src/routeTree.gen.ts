@@ -18,6 +18,7 @@ import { Route as rootRoute } from './routes/__root'
 
 const StyledliteralLazyImport = createFileRoute('/styledliteral')()
 const LiteralobjLazyImport = createFileRoute('/literalobj')()
+const ClassnameLazyImport = createFileRoute('/classname')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -32,6 +33,11 @@ const LiteralobjLazyRoute = LiteralobjLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/literalobj.lazy').then((d) => d.Route))
 
+const ClassnameLazyRoute = ClassnameLazyImport.update({
+  path: '/classname',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/classname.lazy').then((d) => d.Route))
+
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -43,6 +49,10 @@ declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/classname': {
+      preLoaderRoute: typeof ClassnameLazyImport
       parentRoute: typeof rootRoute
     }
     '/literalobj': {
@@ -60,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  ClassnameLazyRoute,
   LiteralobjLazyRoute,
   StyledliteralLazyRoute,
 ])
