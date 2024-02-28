@@ -78,6 +78,20 @@ export default function Sidebar() {
         navigate({ to: '/classname' })
       },
     },
+    {
+      content: 'Dynamic vs ClassName',
+      isSelected: location.pathname === '/dynamic',
+      onClick: () => {
+        navigate({ to: '/dynamic' })
+      },
+    },
+    {
+      content: 'Compose vs Separate',
+      isSelected: location.pathname === '/compose',
+      onClick: () => {
+        navigate({ to: '/compose' })
+      },
+    },
   ]
 
   return (

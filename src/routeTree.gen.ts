@@ -18,6 +18,8 @@ import { Route as rootRoute } from './routes/__root'
 
 const StyledliteralLazyImport = createFileRoute('/styledliteral')()
 const LiteralobjLazyImport = createFileRoute('/literalobj')()
+const DynamicLazyImport = createFileRoute('/dynamic')()
+const ComposeLazyImport = createFileRoute('/compose')()
 const ClassnameLazyImport = createFileRoute('/classname')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -32,6 +34,16 @@ const LiteralobjLazyRoute = LiteralobjLazyImport.update({
   path: '/literalobj',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/literalobj.lazy').then((d) => d.Route))
+
+const DynamicLazyRoute = DynamicLazyImport.update({
+  path: '/dynamic',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/dynamic.lazy').then((d) => d.Route))
+
+const ComposeLazyRoute = ComposeLazyImport.update({
+  path: '/compose',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/compose.lazy').then((d) => d.Route))
 
 const ClassnameLazyRoute = ClassnameLazyImport.update({
   path: '/classname',
@@ -55,6 +67,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClassnameLazyImport
       parentRoute: typeof rootRoute
     }
+    '/compose': {
+      preLoaderRoute: typeof ComposeLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/dynamic': {
+      preLoaderRoute: typeof DynamicLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/literalobj': {
       preLoaderRoute: typeof LiteralobjLazyImport
       parentRoute: typeof rootRoute
@@ -71,6 +91,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   ClassnameLazyRoute,
+  ComposeLazyRoute,
+  DynamicLazyRoute,
   LiteralobjLazyRoute,
   StyledliteralLazyRoute,
 ])
