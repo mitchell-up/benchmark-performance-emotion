@@ -86,10 +86,10 @@ export default function Sidebar() {
       },
     },
     {
-      content: 'Compose vs Separate',
-      isSelected: location.pathname === '/compose',
+      content: 'Theme vs Constants',
+      isSelected: location.pathname === '/theme',
       onClick: () => {
-        navigate({ to: '/compose' })
+        navigate({ to: '/theme' })
       },
     },
   ]

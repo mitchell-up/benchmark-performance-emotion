@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const ThemeLazyImport = createFileRoute('/theme')()
 const StyledliteralLazyImport = createFileRoute('/styledliteral')()
 const LiteralobjLazyImport = createFileRoute('/literalobj')()
 const DynamicLazyImport = createFileRoute('/dynamic')()
@@ -24,6 +25,11 @@ const ClassnameLazyImport = createFileRoute('/classname')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const ThemeLazyRoute = ThemeLazyImport.update({
+  path: '/theme',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/theme.lazy').then((d) => d.Route))
 
 const StyledliteralLazyRoute = StyledliteralLazyImport.update({
   path: '/styledliteral',
@@ -83,6 +89,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StyledliteralLazyImport
       parentRoute: typeof rootRoute
     }
+    '/theme': {
+      preLoaderRoute: typeof ThemeLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -95,4 +105,5 @@ export const routeTree = rootRoute.addChildren([
   DynamicLazyRoute,
   LiteralobjLazyRoute,
   StyledliteralLazyRoute,
+  ThemeLazyRoute,
 ])
