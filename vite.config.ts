@@ -7,8 +7,9 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: '@emotion/react',
-      plugins: [['@swc/plugin-emotion', {}]]
+      plugins: [['@swc/plugin-emotion', {}]],
     }),
-   TanStackRouterVite()
+    TanStackRouterVite(),
   ],
+  base: '/benchmark-performance-emotion/',
 })
