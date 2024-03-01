@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/joy'
+import { Box, Chip, Divider, Stack, Typography } from '@mui/joy'
 import { Profiler, ReactNode } from 'react'
 import { AnalysisResult } from './ui/AnaysisResult'
 import { useAnalysis } from '../hooks/useAnalysis'
@@ -43,6 +43,7 @@ export default function PageLayout({
             <Typography level='body-md' component='p' sx={{ mt: 0, mb: 2 }}>
               {description}
             </Typography>
+            <Divider sx={{ mb: 2 }} />
           </Box>
         </Box>
 
@@ -50,7 +51,11 @@ export default function PageLayout({
           {renderCnt > 0 && (
             <Stack direction={'row'} gap={4}>
               <Box flex={1}>
-                <Typography>{compAName}</Typography>
+                <Box sx={{ mb: 1 }}>
+                  <Chip color='danger' size='lg' variant='soft'>
+                    {compAName}
+                  </Chip>
+                </Box>
                 <Profiler
                   key={genKey(compAName)}
                   id={compAName}
@@ -60,7 +65,11 @@ export default function PageLayout({
                 </Profiler>
               </Box>
               <Box flex={1}>
-                <Typography>{compBName}</Typography>
+                <Box sx={{ mb: 1 }}>
+                  <Chip color='success' size='lg' variant='soft'>
+                    {compBName}
+                  </Chip>
+                </Box>
                 <Profiler
                   key={genKey(compBName)}
                   id={compBName}

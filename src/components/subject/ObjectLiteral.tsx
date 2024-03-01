@@ -1,15 +1,8 @@
 import { css } from '@emotion/react'
-import { InputHTMLAttributes, Ref, forwardRef } from 'react'
-
-export interface ToggleButtonProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {}
+import { Layout } from './Layout'
 
 const literalCss = css`
   display: inline-flex;
-
-  &.--disabled {
-    opacity: 0.3;
-  }
 
   & input[type='checkbox'] {
     cursor: pointer;
@@ -65,28 +58,22 @@ const literalCss = css`
   }
 `
 
-export const ToggleLiteral = forwardRef(function ToggleButton(
-  props: ToggleButtonProps,
-  ref: Ref<HTMLInputElement>,
-) {
-  const { disabled, ...rest } = props
+export function ToggleLiteral() {
   return (
-    <div>
-      {Array.from({ length: 3 }).map((_, idx) => (
+    <Layout>
+      {Array.from({ length: 12 }).map((_, idx) => (
         <label css={literalCss} key={idx}>
-          <input type='checkbox' ref={ref} disabled={disabled} {...rest} />
+          <input type='checkbox' />
         </label>
       ))}
-    </div>
+    </Layout>
   )
-})
+}
+
+//**************************************************************************************
 
 const objCss = css({
   display: 'inline-flex',
-
-  '&.--disabled': {
-    opacity: 0.3,
-  },
 
   "& input[type='checkbox']": {
     cursor: 'pointer',
@@ -141,18 +128,14 @@ const objCss = css({
   },
 })
 
-export const ToggleObj = forwardRef(function ToggleButton(
-  props: ToggleButtonProps,
-  ref: Ref<HTMLInputElement>,
-) {
-  const { disabled, ...rest } = props
+export function ToggleObj() {
   return (
-    <div>
-      {Array.from({ length: 3 }).map((_, idx) => (
+    <Layout>
+      {Array.from({ length: 12 }).map((_, idx) => (
         <label css={objCss} key={idx}>
-          <input type='checkbox' ref={ref} disabled={disabled} {...rest} />
+          <input type='checkbox' />
         </label>
       ))}
-    </div>
+    </Layout>
   )
-})
+}

@@ -72,7 +72,14 @@ export default function Sidebar() {
       },
     },
     {
-      content: 'CssProp vs ClassName',
+      content: 'Inside vs Outside',
+      isSelected: location.pathname === '/outside',
+      onClick: () => {
+        navigate({ to: '/outside' })
+      },
+    },
+    {
+      content: 'Separate vs ClassName',
       isSelected: location.pathname === '/classname',
       onClick: () => {
         navigate({ to: '/classname' })
