@@ -65,7 +65,7 @@ export default function Sidebar() {
       },
     },
     {
-      content: 'Object vs Literal (CssProp)',
+      content: 'Literal vs Object (CssProp)',
       isSelected: location.pathname === '/literalobj',
       onClick: () => {
         navigate({ to: '/literalobj' })

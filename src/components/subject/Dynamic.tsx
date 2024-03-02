@@ -1,69 +1,120 @@
 import { css } from '@emotion/react'
 
-const btnClassCss = css({
-  fontSize: '20px',
-  padding: '12px 24px',
-  '&.contained': {
-    background: 'lightgray',
+const info = [
+  { head: '이름', desc: '홍길동' },
+  { head: '닉네임', desc: '홍길동과아버지' },
+  { head: '전화번호', desc: '02-8282-8282' },
+  { head: '성별', desc: '남성' },
+  { head: '이름', desc: '홍길동' },
+  { head: '닉네임', desc: '홍길동과아버지' },
+  { head: '전화번호', desc: '02-8282-8282' },
+  { head: '성별', desc: '남성' },
+  { head: '이름', desc: '홍길동' },
+  { head: '닉네임', desc: '홍길동과아버지' },
+  { head: '전화번호', desc: '02-8282-8282' },
+  { head: '성별', desc: '남성' },
+]
+
+const infoCss = css({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+
+  '& .infoItem': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    '& .head': {
+      fontWeight: 'bold',
+    },
+
+    '& .desc': {
+      color: 'gray',
+    },
   },
-  '&.outlined': {
-    border: '1px solid lightgray',
+
+  '&.red': {
+    color: 'red',
+  },
+  '&.green': {
+    color: 'green',
+  },
+  '&.blue': {
+    color: 'blue',
   },
 })
 
-function ClassNameButton({ variant }: { variant: 'contained' | 'outlined' }) {
+function ClassNameInfo({ color }: { color: 'red' | 'green' | 'blue' }) {
   return (
-    <button className={variant} css={btnClassCss}>
-      버튼
-    </button>
+    <ul css={infoCss} className={color}>
+      {info.map((data) => (
+        <li key={data.head} className='infoItem'>
+          <span className='head'>{data.head}</span>
+          <p className='desc'>{data.desc}</p>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function ClassNameButtons() {
+export function ClassNameInfos() {
   return (
     <div>
-      <ClassNameButton variant='contained' />
-      <ClassNameButton variant='outlined' />
-      <ClassNameButton variant='contained' />
-      <ClassNameButton variant='outlined' />
-      <ClassNameButton variant='contained' />
-      <ClassNameButton variant='outlined' />
+      {Array.from({ length: 3 }).map((_, idx) => (
+        <>
+          <ClassNameInfo color='red' key={`red-${idx}`} />
+          <ClassNameInfo color='green' key={`blue-${idx}`} />
+          <ClassNameInfo color='blue' key={`green-${idx}`} />
+        </>
+      ))}
     </div>
   )
 }
 
-const btnDynamicCss = css({
-  fontSize: '20px',
-  padding: '12px 24px',
+const infoSeparateCss = css({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+
+  '& .infoItem': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    '& .head': {
+      fontWeight: 'bold',
+    },
+
+    '& .desc': {
+      color: 'gray',
+    },
+  },
 })
 
-function DynamicButton({ variant }: { variant: 'contained' | 'outlined' }) {
+function DynamicInfo({ color }: { color: 'red' | 'green' | 'blue' }) {
   return (
-    <button
-      css={[
-        btnDynamicCss,
-        variant === 'contained' && {
-          background: 'lightgray',
-        },
-        variant === 'outlined' && {
-          border: '1px solid lightgray',
-        },
-      ]}
-    >
-      버튼
-    </button>
+    <ul css={infoSeparateCss}>
+      {info.map((data) => (
+        <li key={data.head} className='infoItem' css={{ color }}>
+          <span className='head'>{data.head}</span>
+          <p className='desc'>{data.desc}</p>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function DynamicButtons() {
+export function DynamicInfos() {
   return (
     <div>
-      <DynamicButton variant='contained' />
-      <DynamicButton variant='outlined' />
-      <DynamicButton variant='contained' />
-      <DynamicButton variant='outlined' />
-      <DynamicButton variant='contained' />
-      <DynamicButton variant='outlined' />
+      {Array.from({ length: 3 }).map((_, idx) => (
+        <>
+          <DynamicInfo color='red' key={`red-${idx}`} />
+          <DynamicInfo color='green' key={`blue-${idx}`} />
+          <DynamicInfo color='blue' key={`green-${idx}`} />
+        </>
+      ))}
     </div>
   )
 }
