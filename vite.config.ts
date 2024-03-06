@@ -9,18 +9,22 @@ const profiling = isProduction && {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react({
-      jsxImportSource: '@emotion/react',
-      plugins: [['@swc/plugin-emotion', {}]],
-    }),
-    TanStackRouterVite(),
-  ],
-  base: '/benchmark-performance-emotion/',
-  resolve: {
-    alias: {
-      ...profiling,
+export default defineConfig(({ mode }) => {
+  console.log('🟡 현재의 모드는?', mode)
+
+  return {
+    plugins: [
+      react({
+        jsxImportSource: '@emotion/react',
+        plugins: [['@swc/plugin-emotion', {}]],
+      }),
+      TanStackRouterVite(),
+    ],
+    base: '/benchmark-performance-emotion/',
+    resolve: {
+      alias: {
+        ...profiling,
+      },
     },
-  },
+  }
 })
