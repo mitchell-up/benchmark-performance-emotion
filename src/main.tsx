@@ -10,7 +10,7 @@ import { routeTree } from './routeTree.gen'
 // Create a new router instance
 const router = createRouter({
   routeTree,
-  basepath: 'benchmark-performance-emotion',
+  basepath: import.meta.env.BASE_URL,
 })
 
 // Register the router instance for type safety
