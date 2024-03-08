@@ -1,7 +1,8 @@
-import { Box, Chip, Divider, Stack, Typography } from '@mui/joy'
-import { Profiler, ReactNode } from 'react'
+import { Box, Divider, Stack, Typography } from '@mui/joy'
+import { ReactNode } from 'react'
 import { AnalysisResult } from './ui/AnaysisResult'
 import { useAnalysis } from '../hooks/useAnalysis'
+import Comparer from './layouts/Comparer'
 
 interface PageLayoutProps {
   title?: string
@@ -22,8 +23,6 @@ export default function PageLayout({
 }: PageLayoutProps) {
   const { onRenderA, onRenderB, renderCnt, measure, clear, data, avg } =
     useAnalysis()
-
-  const genKey = (id: string) => `${id}-${renderCnt}`
 
   return (
     <Stack direction={'row'}>
@@ -49,36 +48,15 @@ export default function PageLayout({
 
         <Box sx={{ px: { xs: 2, md: 6 } }}>
           {renderCnt > 0 && (
-            <Stack direction={'row'} gap={4}>
-              <Box flex={1}>
-                <Box sx={{ mb: 1 }}>
-                  <Chip color='danger' size='lg' variant='soft'>
-                    {compAName}
-                  </Chip>
-                </Box>
-                <Profiler
-                  key={genKey(compAName)}
-                  id={compAName}
-                  onRender={onRenderA}
-                >
-                  {compA}
-                </Profiler>
-              </Box>
-              <Box flex={1}>
-                <Box sx={{ mb: 1 }}>
-                  <Chip color='success' size='lg' variant='soft'>
-                    {compBName}
-                  </Chip>
-                </Box>
-                <Profiler
-                  key={genKey(compBName)}
-                  id={compBName}
-                  onRender={onRenderB}
-                >
-                  {compB}
-                </Profiler>
-              </Box>
-            </Stack>
+            <Comparer
+              compAName={compAName}
+              compA={compA}
+              onRenderA={onRenderA}
+              compBName={compBName}
+              compB={compB}
+              onRenderB={onRenderB}
+              renderCnt={renderCnt}
+            />
           )}
         </Box>
       </Box>
