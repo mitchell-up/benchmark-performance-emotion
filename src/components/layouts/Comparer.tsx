@@ -24,6 +24,7 @@ export default function Comparer({
 
   return (
     <Stack direction={'row'} gap={4}>
+      {/* Component A */}
       <Box flex={1}>
         <Box sx={{ mb: 1 }}>
           <Chip color='danger' size='lg' variant='soft'>
@@ -34,6 +35,8 @@ export default function Comparer({
           {compA}
         </Profiler>
       </Box>
+
+      {/* Component B */}
       <Box flex={1}>
         <Box sx={{ mb: 1 }}>
           <Chip color='success' size='lg' variant='soft'>

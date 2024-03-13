@@ -13,38 +13,6 @@ import ColorSchemeToggle from './ColorSchemeToggle'
 import { closeSidebar } from '../utils'
 import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
 
-// function Toggler({
-//   defaultExpanded = false,
-//   renderToggle,
-//   children,
-// }: {
-//   defaultExpanded?: boolean;
-//   children: React.ReactNode;
-//   renderToggle: (params: {
-//     open: boolean;
-//     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-//   }) => React.ReactNode;
-// }) {
-//   const [open, setOpen] = React.useState(defaultExpanded);
-//   return (
-//     <React.Fragment>
-//       {renderToggle({ open, setOpen })}
-//       <Box
-//         sx={{
-//           display: 'grid',
-//           gridTemplateRows: open ? '1fr' : '0fr',
-//           transition: '0.2s ease',
-//           '& > *': {
-//             overflow: 'hidden',
-//           },
-//         }}
-//       >
-//         {children}
-//       </Box>
-//     </React.Fragment>
-//   );
-// }
-
 export default function Sidebar() {
   const navigate = useNavigate()
   const { location } = useRouterState()
@@ -188,34 +156,6 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
           ))}
-          {/* <ListItem nested>
-            <Toggler
-              defaultExpanded
-              renderToggle={({ open, setOpen }) => (
-                <ListItemButton onClick={() => setOpen(!open)}>
-                  <GroupRoundedIcon />
-                  <ListItemContent>
-                    <Typography level="title-sm">Users</Typography>
-                  </ListItemContent>
-                  <KeyboardArrowDownIcon
-                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
-                  />
-                </ListItemButton>
-              )}
-            >
-              <List sx={{ gap: 0.5 }}>
-                <ListItem sx={{ mt: 0.5 }}>
-                  <ListItemButton selected>My profile</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton>Create a new user</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton>Roles & permission</ListItemButton>
-                </ListItem>
-              </List>
-            </Toggler>
-          </ListItem> */}
         </List>
       </Box>
       <Divider />
