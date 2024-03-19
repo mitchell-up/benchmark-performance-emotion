@@ -1,13 +1,19 @@
 import { ProfilerOnRenderCallback, useEffect, useState } from 'react'
 
-type Data = [number, number]
-type AnaysisData = Data[]
+type DataA = number
+type DataB = number
+export type Data = [DataA, DataB]
+export type AnalysisData = Data[]
+
+function calcAverage(total: Data, count: number): Data {
+  return [total[0] / count, total[1] / count]
+}
 
 export function useAnalysis() {
   const [renderCnt, setRenderCnt] = useState(0)
   const [durationA, setDurationA] = useState<number>()
   const [durationB, setDurationB] = useState<number>()
-  const [data, setData] = useState<AnaysisData>([])
+  const [data, setData] = useState<AnalysisData>([])
   const [total, setTotal] = useState<Data>([0, 0])
 
   const measure = () => {
@@ -48,7 +54,7 @@ export function useAnalysis() {
     onRenderA,
     onRenderB,
     data,
-    avg: total.map((val) => val / data.length) as Data,
+    avg: calcAverage(total, data.length),
     clear,
     measure,
   }

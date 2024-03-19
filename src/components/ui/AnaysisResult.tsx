@@ -1,12 +1,13 @@
 import { Box, Button, Divider, Sheet, Stack, Table } from '@mui/joy'
 import AnalysisLoader from './AnalysisLoader'
 import AnalysisAppendix from './AnaysisAppendix'
+import { AnalysisData, Data } from '../../hooks/useAnalysis'
 
 export interface AnalysisResultProps {
   profileA: string
   profileB: string
-  data: [number, number][]
-  avg: [number, number]
+  data: AnalysisData
+  avg: Data
   onMeasure: () => void
   onClear: () => void
 }
