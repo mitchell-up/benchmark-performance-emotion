@@ -11,7 +11,7 @@ CSS in JS 중의 대표적인 라이브러리인 `Emotion`으로 스타일링을
 [배포된 페이지](https://mitchell-up.github.io/benchmark-performance-emotion)로 접속하거나 해당 프로젝트를 클론하고 다음의 명령어를 통해 실행하여 접속하세요.
 
 ```bash
-npm run dev 
+npm run preview 
 ```
 
 <br/>
