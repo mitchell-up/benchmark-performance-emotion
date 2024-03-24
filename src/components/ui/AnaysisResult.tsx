@@ -1,14 +1,15 @@
-import { Box, Button, Divider, Sheet, Stack, Table } from '@mui/joy'
+import { Box, Button, Divider, Input, Sheet, Stack, Table } from '@mui/joy'
 import AnalysisLoader from './AnalysisLoader'
 import AnalysisAppendix from './AnaysisAppendix'
 import { AnalysisData, Data } from '../../hooks/useAnalysis'
+import { useState } from 'react'
 
 export interface AnalysisResultProps {
   profileA: string
   profileB: string
   data: AnalysisData
   avg: Data
-  onMeasure: () => void
+  onMeasure: (trial?: number) => void
   onClear: () => void
 }
 
@@ -20,6 +21,8 @@ export function AnalysisResult({
   onMeasure,
   onClear,
 }: AnalysisResultProps) {
+  const [trial, setTrial] = useState<number>()
+
   return (
     <Sheet
       sx={{
@@ -42,11 +45,19 @@ export function AnalysisResult({
     >
       <AnalysisAppendix />
 
+      <Input
+        variant='soft'
+        placeholder='Number of trials'
+        type='number'
+        value={trial || ''}
+        onChange={(e) => setTrial(Number(e.currentTarget.value))}
+      />
+
       <Stack direction={'row'} justifyContent={'space-between'} gap={0.5}>
         <Button variant='soft' sx={{ flex: 1 }} onClick={onClear}>
           Clear
         </Button>
-        <Button sx={{ flex: 1 }} onClick={onMeasure}>
+        <Button sx={{ flex: 1 }} onClick={() => onMeasure(trial)}>
           Measure
         </Button>
       </Stack>
@@ -71,6 +82,11 @@ export function AnalysisResult({
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td scope='row'>Avg.</td>
+                <td>{avg[0].toFixed(2)}</td>
+                <td>{avg[1].toFixed(2)}</td>
+              </tr>
               {data.map((values, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
@@ -79,13 +95,6 @@ export function AnalysisResult({
                 </tr>
               ))}
             </tbody>
-            <tfoot>
-              <tr>
-                <th scope='row'>Avg.</th>
-                <td>{avg[0].toFixed(2)}</td>
-                <td>{avg[1].toFixed(2)}</td>
-              </tr>
-            </tfoot>
           </Table>
         )}
       </Box>

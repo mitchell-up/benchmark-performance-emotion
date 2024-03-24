@@ -16,12 +16,20 @@ export function useAnalysis() {
   const [data, setData] = useState<AnalysisData>([])
   const [total, setTotal] = useState<Data>([0, 0])
 
-  const measure = () => {
-    setRenderCnt((prev) => ++prev)
+  const measure = (trial?: number) => {
+    let trialNumber = trial || 1
 
-    // Trigger re-rendering by clearing durations.
-    setDurationA(undefined)
-    setDurationB(undefined)
+    setTimeout(() => {
+      setRenderCnt((prev) => ++prev)
+
+      // Trigger re-rendering by clearing durations.
+      setDurationA(undefined)
+      setDurationB(undefined)
+
+      if (trialNumber > 1) {
+        measure(--trialNumber)
+      }
+    }, 0)
   }
 
   const clear = () => {
