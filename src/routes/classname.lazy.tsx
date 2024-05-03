@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import PageLayout from '../components/PageLayout'
-import { ClassNameInfo, SeparateInfo } from '../components/subject/Classname'
+import { SeparateInfo } from '../components/subjects/classname/SeparateInfo'
+import { ClassNameInfo } from '../components/subjects/classname/ClassNameInfo'
 
 export const Route = createLazyFileRoute('/classname')({
   component: Component,
