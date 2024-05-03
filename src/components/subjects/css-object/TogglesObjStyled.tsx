@@ -58,7 +58,7 @@ const StyledToggle = styled.label({
   },
 })
 
-export function TogglesStyled() {
+export function TogglesObjStyled() {
   return (
     <Layout>
       {Array.from({ length: RENDER_COUNT }).map((_, idx) => (

@@ -58,7 +58,7 @@ const cssObj = css({
   },
 })
 
-export function TogglesCssProp() {
+export function TogglesObjCssProp() {
   return (
     <Layout>
       {Array.from({ length: RENDER_COUNT }).map((_, idx) => (
