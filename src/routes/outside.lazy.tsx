@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import PageLayout from '../components/PageLayout'
-import { Insides, Outsides } from '../components/subject/Outside'
+import { Insides } from '../components/subjects/outside/Insides'
+import { Outsides } from '../components/subjects/outside/Outsides'
 
 export const Route = createLazyFileRoute('/outside')({
   component: Component,
