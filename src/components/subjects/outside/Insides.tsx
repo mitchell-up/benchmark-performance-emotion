@@ -1,4 +1,4 @@
-import { Layout } from '../../subject/Layout'
+import { Layout } from '../../layouts/Layout'
 import { RENDER_COUNT } from './data'
 
 export function Insides() {

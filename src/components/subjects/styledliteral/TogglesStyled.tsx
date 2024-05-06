@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Layout } from '../../subject/Layout'
+import { Layout } from '../../layouts/Layout'
 import { RENDER_COUNT } from './data'
 
 const StyledToggle = styled.label`

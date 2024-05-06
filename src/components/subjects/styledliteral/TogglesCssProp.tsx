@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { Layout } from '../../subject/Layout'
+import { Layout } from '../../layouts/Layout'
 import { RENDER_COUNT } from './data'
 
 const cssObj = css`
